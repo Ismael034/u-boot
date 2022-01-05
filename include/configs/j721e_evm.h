@@ -215,6 +215,9 @@
 		"mmc write ${loadaddr} 0x1900 0x300; "			\
 		"mmc bootbus 0 2 0 0; "					\
 		"\0"							\
+	"emmc_erase_boot0=mmc dev 0 1; "				\
+		"mmc erase 0 0x2400; "					\
+		"\0"							\
 	"name_kern=Image\0"						\
 	"console=ttyS2,115200n8\0"					\
 	"args_all=setenv optargs earlycon=ns16550a,mmio32,0x02800000 "	\
