@@ -471,6 +471,7 @@ int __maybe_unused ti_i2c_eeprom_am6_get(int bus_addr, int dev_addr,
 	 */
 	eeprom_addr = sizeof(board_id);
 
+	int give_up=1;
 	while (true) {
 		rc = dm_i2c_read(dev, eeprom_addr, (uint8_t *)&record.header,
 				 sizeof(record.header));
@@ -514,6 +515,11 @@ int __maybe_unused ti_i2c_eeprom_am6_get(int bus_addr, int dev_addr,
 			 */
 			pr_err("%s: Ignoring record id %u\n", __func__,
 			       record.header.id);
+
+			give_up++;
+			if (give_up > 10) {
+				break;
+			}
 		}
 
 		eeprom_addr += record.header.len;
