@@ -26,6 +26,10 @@
 		remoteproc8 = &c71_0;
 	};
 
+	config {
+		u-boot,boot-led = "wp0";
+	};
+
 	leds {
 		pinctrl-names = "default";
 		pinctrl-0 = <&eeprom_wp_pins_default>;
