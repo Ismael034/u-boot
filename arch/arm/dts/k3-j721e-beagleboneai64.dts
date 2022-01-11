@@ -6,6 +6,7 @@
 /dts-v1/;
 
 #include "k3-j721e-som-p0.dtsi"
+#include <dt-bindings/gpio/gpio.h>
 
 / {
 	chosen {
@@ -23,6 +24,20 @@
 		remoteproc6 = &c66_0;
 		remoteproc7 = &c66_1;
 		remoteproc8 = &c71_0;
+	};
+
+	leds {
+		pinctrl-names = "default";
+		pinctrl-0 = <&eeprom_wp_pins_default>;
+
+		compatible = "gpio-leds";
+
+		wp0 {
+			label = "EEPROM_WP";
+			gpios = <&wkup_gpio0 5 GPIO_ACTIVE_LOW>;
+			default-state = "off";
+			status = "okay";
+		};
 	};
 };
 
@@ -168,7 +183,7 @@
 
 &wkup_i2c0 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
+	pinctrl-0 = <&wkup_i2c0_pins_default>;
 	clock-frequency = <400000>;
 
 	eeprom@50 {
