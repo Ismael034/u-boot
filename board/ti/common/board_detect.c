@@ -463,7 +463,6 @@ int __maybe_unused ti_i2c_eeprom_am6_get(int bus_addr, int dev_addr,
 	/* Ready to parse TLV structure. Initialize variables... */
 	*mac_addr_cnt = 0;
 
-//#if 0
 	/*
 	 * After the all-encompassing board ID record all other records follow
 	 * a TLV-type scheme. Point to the first such record and then start
@@ -524,7 +523,6 @@ int __maybe_unused ti_i2c_eeprom_am6_get(int bus_addr, int dev_addr,
 
 		eeprom_addr += record.header.len;
 	}
-//#endif
 
 	return 0;
 }
